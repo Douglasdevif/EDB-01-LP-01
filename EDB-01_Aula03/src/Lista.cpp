@@ -40,7 +40,6 @@ bool Lista::inserirInicio(const std::string& elemento)
     No* novoElemento = new No(elemento);
 
     if(this->quantidade == 0) this->ultimo = novoElemento;
-
     novoElemento->proximo = this->primeiro;
     this->primeiro = novoElemento;
 
@@ -57,12 +56,11 @@ bool Lista::inserirInicio(const std::string& elemento)
  */
 bool Lista::inserirFim(const std::string& elemento)
 {
-    No* novoElemento = new No(elemento);
-
+   No* novoElemento = new No(elemento);
     if(this->quantidade == 0) this->primeiro = novoElemento;
-    else this->ultimo->proximo = novoElemento;
 
     novoElemento->proximo = this->ultimo;
+    this->ultimo = novoElemento;
     novoElemento->proximo = nullptr;
 
     this->quantidade++;
@@ -91,7 +89,17 @@ bool Lista::inserirNaPosicao(int i, const std::string& elemento)
  */
 bool Lista::removerInicio()
 {
-    throw std::runtime_error("Ainda não foi implementado.");
+    if(this->quantidade == 0) std::out_of_range("Lista vazia.");
+
+
+    auto aux = this->primeiro;
+    this->primeiro = this->primeiro->proximo;
+
+    delete aux;
+    this->quantidade--;
+    return true;
+    
+
 }
 
 /**
