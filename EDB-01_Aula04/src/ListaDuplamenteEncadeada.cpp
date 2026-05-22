@@ -127,7 +127,7 @@ int ListaDuplamenteEncadeada::buscar(std::string s) const {
  * @return false Caso contrário.
  */
 bool ListaDuplamenteEncadeada::inserirInicio(std::string s) {
-    auto novo = new No(s);
+    auto novo = new No<std::string>(s);
         //inserir novo na primeira posição
 
         novo->anterior = cabeca;
@@ -150,11 +150,11 @@ bool ListaDuplamenteEncadeada::inserirInicio(std::string s) {
  * @return false Caso contrário.
  */
 bool ListaDuplamenteEncadeada::inserirFim(std::string s) {
-    auto novo = new No(s);
-
+    
+    auto novo = new No<std::string>(s);
     //inserir no ultimo elemento
     novo->proximo = cauda;
-    novo->anterior = cabeca->proximo;
+    novo->anterior = cauda->anterior;
 
     //ordenar os vizinhos
 
@@ -209,7 +209,21 @@ bool ListaDuplamenteEncadeada::inserirOrdenado(std::string s) {
  * @return Elemento removido como std::string.
  */
 std::string ListaDuplamenteEncadeada::removerInicio() {
-    throw "ERRO: ainda não foi implementado.";
+    if (this->quantidade == 0) {
+        throw std::out_of_range("A lista já está vazia.");
+    }
+
+    //aponta para o primeiro elemento da lista
+    auto novo = cabeca->proximo;
+
+    //Organiza os vizinhos
+    cabeca->proximo = novo->proximo;
+    novo->proximo->anterior = cabeca;
+
+    delete novo;
+
+    this->quantidade--;
+    return "Elemento removido";
 }
 
 /**
@@ -218,7 +232,22 @@ std::string ListaDuplamenteEncadeada::removerInicio() {
  * @return Elemento removido como std::string.
  */
 std::string ListaDuplamenteEncadeada::removerFim() {
-    throw "ERRO: ainda não foi implementado.";
+    if (this->quantidade == 0) {
+        throw std::out_of_range("A lista já está vazia.");
+    }
+
+    //Defino o ultimo elemento
+    auto remFim = cauda->anterior;
+
+    //Organizar os vizinhos
+    cauda->anterior = remFim->anterior;
+    remFim->proximo->anterior = cauda;
+
+    delete remFim;
+
+    this->quantidade--;
+    return "Elemento removido";
+
 }
 
 /**
