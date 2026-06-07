@@ -38,12 +38,13 @@ int Lista::removerTodos(const std::string& valor)                               
             delete noparaDeletar;
             this->quantidade--;
             removidos++;
-        }
-        else{
+            
+        } else{
             atual = atual->proximo;
         }
     }
     return removidos;
+
 }// End​
 
 
