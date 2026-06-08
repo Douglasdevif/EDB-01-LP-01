@@ -11,11 +11,16 @@ if ((atual != this->cauda && atual->valor == s) ||
     return false;
 }
 
-auto novoElement = new no<std::string>(s);
-auto anterior = atual->anterior;
+auto vizinhoDireita = atual
+auto vizinhoEsquerda = atual->anterior;
 
-anterior->proximo = novoElement;
-atual->anterior = novoElement;
+auto novoElement = new no<std::string>(s);
+
+novoElement->proximo = vizinhoDireita;
+novoElement->anterior = vizinhoEsquerda;
+
+vizinhoDireita->proximo = novoElement;
+vizinhoEsquerda->anterior = novoElement;
 
 this->quantidade++;
 return true;
