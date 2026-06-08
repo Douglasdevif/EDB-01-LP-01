@@ -1,21 +1,50 @@
 auto atual = this->cabeca->proximo;
 
-for(int j = 1; j < this->quantidade+1; j++){
+for(int j = 1; j < this->quantidade + 1; j++){
     if(atual->valor == referencia){
-        auto novoElement = No<std::string>(novoElemento);
 
-        novoElement->proximo = novoElemento;
-        novoElement->anterior = atual->anterior;
+        auto novoElement = new No<std::string>(novoElemento);
 
-        atual->anterior->proximo = novoElemento;
-        atual->anterior = novoElemento;
+        vizinhoDaDireita = atual;
+        vizinhoDaEsquerda = atual->anterior;
+
+        vizinhoDaEsquerda->proximo = novoElement;
+        vizinhoDaDireita->anterior = novoElement;
 
         this->quantidade++;
         return true;
     }
     atual = atual->proximo;
 }
-return false;
+	return false;
+
+
+
+
+
+
+auto atual = this->cabeca->getProximo();
+
+    for (int j = 1; j < this->quantidade + 1; j++) {
+        if (atual->getValor() == referencia) {
+
+            auto vizinhoDaDireita = atual;
+            auto vizinhoDaEsquerda = atual->getAnterior();
+
+            auto novoElement = new No<std::string>(novoElemento);
+
+            novoElement->setProximo(vizinhoDaDireita);
+            novoElement->setAnterior(vizinhoDaEsquerda);
+
+            vizinhoDaEsquerda->setProximo(novoElement);
+            vizinhoDaDireita->setAnterior(novoElement);
+
+            this->quantidade++;
+            return true;
+        }
+        atual = atual->getProximo();
+    }
+    return false;
  
  
  

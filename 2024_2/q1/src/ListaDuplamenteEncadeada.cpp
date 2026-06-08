@@ -49,22 +49,29 @@ bool ListaDuplamenteEncadeada::inserirAntes(std::string novoElemento, std::strin
 {	
 	 auto atual = this->cabeca->getProximo();
 
-	 for(int j = 1; j< this->quantidade+1; j++){
-		if(atual->getValor() == referencia){
-			auto novoElement = new No<std::string>(novoElemento);
+    for (int j = 1; j < this->quantidade + 1; j++) {
+        if (atual->getValor() == referencia) {
+            
+            auto vizinhoDaDireita = atual;
+            auto vizinhoDaEsquerda = atual->getAnterior();
 
-			novoElement->setProximo(atual);
-			novoElement->setAnterior(atual->getAnterior());
+           
+            auto novoElement = new No<std::string>(novoElemento);
 
-			atual->getAnterior()->setProximo(novoElement);
-			atual->setAnterior(novoElement);
+            
+            novoElement->setProximo(vizinhoDaDireita);
+            novoElement->setAnterior(vizinhoDaEsquerda);
 
-			this->quantidade++;
-			return true;
-		}
-		atual = atual->getProximo();
-	 }
-	 return false;
+            
+            vizinhoDaEsquerda->setProximo(novoElement);
+            vizinhoDaDireita->setAnterior(novoElement);
+
+            this->quantidade++;
+            return true;
+        }
+        atual = atual->getProximo();
+    }
+    return false;
 
 }
 
