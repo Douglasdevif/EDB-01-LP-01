@@ -1,23 +1,4 @@
-//
-//  ListaEncadeada.cpp
-//
-//  Created by Eiji Adachi Medeiros Barbosa
-//
-
-#include "../header/Analisador.h"
-#include <string>
-#include <stack>
-
-using namespace std;
-
-Analisador::Analisador()
-{
-    
-}
-
-bool Analisador::eBemFormada(std::string str)
-{
-   std::stack<char> pilha;
+std::stack<char> pilha;
 
     for (char atual : str) {
         switch (atual) {
@@ -46,6 +27,3 @@ bool Analisador::eBemFormada(std::string str)
     }
 
     return pilha.empty();
-
-    
-}
