@@ -6,8 +6,7 @@ while(atual != cauda && atual->valor > s){
     atual = atual->proximo;
 }
 
-if ((atual != this->cauda && atual->valor == s) || 
-    (atual->anterior != this->cabeca && atual->anterior->valor == s)) {
+if (atual != this->cauda && atual->valor == s) {
     return false;
 }
 
@@ -19,8 +18,8 @@ auto novoElement = new no<std::string>(s);
 novoElement->proximo = vizinhoDireita;
 novoElement->anterior = vizinhoEsquerda;
 
-vizinhoDireita->proximo = novoElement;
-vizinhoEsquerda->anterior = novoElement;
+vizinhoEsquerda->proximo = novoElement;
+vizinhoDireita->anterior = novoElement;
 
 this->quantidade++;
 return true;
