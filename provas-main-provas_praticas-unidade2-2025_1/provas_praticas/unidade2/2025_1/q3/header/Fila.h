@@ -58,8 +58,8 @@ public:
         if(this->quantidade == this->capacidade){
             throw std::overflow_error ("Fila cheia");
         }
-        this->elementos[this->posicao] = elemento;
-        this->posicao = (this->posicao+1) % this->capacidade;
+        this->elementos[this->fim] = elemento;
+        this->fim = (this->fim+1) % this->capacidade;
         this->quantidade++;
     }// End​
 
@@ -68,7 +68,8 @@ public:
        if(this->vazia()){
             throw std::underflow_error "Fila vazia";
         }
-        this->frente = (this->frente+1)% this->capacidade;
+        T elementoFrente = elementos[inicio];
+        this->inicio = (this->inicio+1)% this->capacidade;
         this->quantidade--;
     }//⁣ End
 
